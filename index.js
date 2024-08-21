@@ -4,6 +4,11 @@ const app = express();
 // Middleware to parse JSON bodies
 app.use(express.json());
 
+// GET endpoint for the root URL
+app.get('/', (req, res) => {
+    res.send('Welcome to the Print API. Use POST /print to send messages to the printer.');
+});
+
 // POST endpoint for printing a message
 app.post('/print', (req, res) => {
     const { inputText, printerIP } = req.body;
