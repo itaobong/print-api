@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 
+// Middleware to parse JSON bodies
 app.use(express.json());
 
+// POST endpoint for printing a message
 app.post('/print', (req, res) => {
     const { inputText, printerIP } = req.body;
 
@@ -15,6 +16,8 @@ app.post('/print', (req, res) => {
     res.send({ status: 'Message sent to printer', inputText, printerIP });
 });
 
+// Use the environment port if available, otherwise default to 3000
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`API listening at http://localhost:${port}`);
 });
